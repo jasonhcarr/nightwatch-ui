@@ -4,15 +4,32 @@
 <head>
     <meta charset='UTF-8'>
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <title>Angular Base Project</title>
+    <title>Nightwatch UI</title>
     <link rel="shortcut icon" href="images/bluecircle.png" type="image/x-icon">
     <link rel="icon" href="bluecircle.png" type="image/x-icon">
     <link rel="stylesheet" href="lib/styles/main.min.css">
 </head>
 
-<body ng-app="baseAngular">
+<body ng-app="nightwatchUI">
 
-  <ui-view></ui-view>
+  <header>
+    <span>Nightwatch UI</span>
+    <nav>
+      <ul>
+        <li ui-sref="main"><button>Main</button></li>
+        <li ui-sref="main.first"><button>First</button></li>
+        <li ui-sref="main.second"><button>Second</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <ui-view></ui-view>
+  </main>
+
+  <footer>
+    <span>Updated Feb 2017</span>
+  </footer>
 
   <script src="lib/js/vendor.js"></script>
   <script src="lib/js/app.js"></script>
