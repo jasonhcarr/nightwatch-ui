@@ -2,4 +2,20 @@
   <h1>{{main.testingVariable}}</h1>
 </header>
 
+<main class="testInstructions">
+  <h1 class="orangeHeader">Test Instructions & Expected Results:</h1>
+  <h2 class="testTitle">Test 1:</h2>
+  <input type="text" ng-model="main.flowName" placeholder="Workflow Name">
+  <input ng-show="main.flowName" type="text" ng-model="main.nodeName" placeholder="Node Name">
+  <input ng-show="main.nodeName" type="text" ng-model="main.nodeOption" placeholder="Option">
+  <select ng-show="main.nodeOption" ng-model="main.optionValue">
+    <option>Possible Values</option>
+    <option ng-repeat="option in main.optionValues" ng-if="main.testSteps.indexOf(option) == -1">{{option}}</option>
+  </select>
+  <button class="addStepBtn" ng-click="main.addStep()">Add Step</button>
+  <ol class="testSteps">
+    <li ng-repeat="step in main.testSteps">{{step}}</li>
+  </ol>
+</main>
+
 <ui-view></ui-view>
