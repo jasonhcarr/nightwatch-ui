@@ -23,7 +23,7 @@ body {
 	line-height: 1;
 	width: 100vw;
 }
-ol, ul {
+ul {
 	list-style: none;
 }
 blockquote, q {
@@ -40,4 +40,9 @@ table {
 }
 *, *:before, *:after {
   box-sizing: border-box;
+}
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 }
