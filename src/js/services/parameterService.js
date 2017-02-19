@@ -374,25 +374,113 @@ angular.module('nightwatchUI').service('ParameterService', function(localStorage
                         ]
                     }
                 ]
+            },
+            LCON_Correct: {
+                labels: [{
+                    label: 'Is the LCON information correct?',
+                    options: [{
+                            value: 'Yes'
+                        },
+                        {
+                            value: 'No'
+                        }
+                    ]
+                }]
             }
-        }
+        },
+        UA2_SA_SUBMAN_LCONNInfoLogEntry: {
+            Question: {
+                labels: [{
+                    label: 'Do you have enough detail in the Problem Description?',
+                    options: [{
+                            value: 'Yes'
+                        },
+                        {
+                            value: 'No'
+                        }
+                    ]
+                }]
+            }
+        },
+        UA2_SA_Submilestone_RNT_CreateTicket_InitialHandling: {
+            Provide_TicketNum: {
+                labels: [{
+                    label: 'Provide the caller with the Main Ticket Number...',
+                    options: [{
+                        value: 'Continue'
+                    }]
+                }]
+            }
+        },
+        UA2_SASUBMAN_VoiceDataIssues: {
+            Data_Details_0010: {
+                labels: [{
+                    label: 'Please enter a detailed description of the issue that is being experienced if it has not already been provided.'
+                }]
+            }
+        },
+        UA2_SA_SUBAUTO_CheckDeviceCktHealthInbound: {
+            Display_HealthCheck_0010: {
+                labels: [{
+                    label: 'The following show the detailed results of the Health Check tests.',
+                    options: [{
+                        value: 'Continue'
+                    }]
+                }]
+            }
+        },
+        UA2_SA_Submilestone_RNT_WrapUp_Call: {
+            Close_Call_0010: {
+                labels: [{
+                    label: 'Click continue to perform the closing operations for this task.',
+                    options: [{
+                        value: 'Continue'
+                    }]
+                }]
+            }
+        },
+        UA2_SA_Milestone_FinalLogUpdateAndLockTicket: {
+            Additional_Logs: {
+                labels: [{
+                    label: 'Are there any additional details that need to be added to the log?',
+                    options: [{
+                            value: 'Yes'
+                        },
+                        {
+                            value: 'No'
+                        }
+                    ]
+                }]
+            }
+        },
+        UA2_SA_SUBAUTO_UATDebug: {
+          Flow_Info_0010: {
+            labels: [{
+              label: 'Goliath/3i Info',
+              options: [{
+                value: 'Continue'
+              }]
+            }]
+          }
+        },
+        Continue: 'Continue to the end of the flow'
     };
 
     function getFlows() {
-      return Object.keys(info);
+        return Object.keys(info);
     }
 
     function getNodes(flow) {
-      return Object.keys(info[flow]);
+        return Object.keys(info[flow]);
     }
 
     function getLabels(flow, node) {
-      return info[flow][node].labels;
+        return info[flow][node].labels;
     }
 
     return {
-      getFlows: getFlows,
-      getNodes: getNodes,
-      getLabels: getLabels
-    }
+        getFlows: getFlows,
+        getNodes: getNodes,
+        getLabels: getLabels
+    };
 });
