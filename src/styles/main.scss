@@ -86,7 +86,6 @@ body > footer {
     padding: 10px;
   }
   .addStepBtn {
-    margin: 10px;
     padding: 10px;
     background: #222;
     color: white;
@@ -115,4 +114,33 @@ body > footer {
 .testSteps {
   color: black;
   margin: 10px;
+}
+
+.stepCreatorContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.searchContainer {
+  position: relative;
+}
+
+.autofillMenu {
+  position: absolute;
+  width: 150%;
+  height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  li {
+    position: relative;
+    padding: 5px;
+    border: 1px solid black;
+    background: white;
+    color: black;
+    overflow-x: scroll;
+    &:hover {
+      background: #222;
+      color: white;
+    }
+  }
 }

@@ -5,16 +5,53 @@
 <main class="testInstructions">
   <h1 class="orangeHeader">Test Instructions & Expected Results:</h1>
   <h2 class="testTitle">Test 1:</h2>
-  <input type="text" ng-model="main.flowName" placeholder="Workflow Name">
-  <input ng-show="main.flowName" type="text" ng-model="main.nodeName" placeholder="Node Name">
-  <input ng-show="main.nodeName" type="text" ng-model="main.nodeOption" placeholder="Option">
-  <select ng-show="main.nodeOption" ng-model="main.optionValue">
-    <option>Possible Values</option>
-    <option ng-repeat="option in main.optionValues" ng-if="main.testSteps.indexOf(option) == -1">{{option}}</option>
-  </select>
-  <button class="addStepBtn" ng-click="main.addStep()">Add Step</button>
+  <div class="stepCreatorContainer">
+    <div class="searchContainer">
+      <input ng-focus="main.searchingFlows = true" ng-blur="main.stopFlowSearch()" type="text" ng-model="main.flowName" placeholder="Workflow Name">
+      <ul ng-show="main.searchingFlows" class="autofillMenu">
+        <li ng-if="main.flowName ? flow.toLowerCase().indexOf(main.flowName.toLowerCase()) != -1 : true" ng-repeat="flow in main.allFlows" ng-click="main.selectFlow(flow)">{{flow}}</li>
+      </ul>
+    </div>
+    <div class="searchContainer">
+      <input ng-show="main.flowName" ng-focus="main.searchingNodes = true" ng-blur="main.stopNodeSearch()" type="text" ng-model="main.nodeName" placeholder="Node Name">
+      <ul ng-show="main.searchingNodes" class="autofillMenu">
+        <li ng-if="main.nodeName ? node.toLowerCase().indexOf(main.nodeName.toLowerCase()) != -1 : true" ng-repeat="node in main.flowNodes" ng-click="main.selectNode(node)">{{node}}</li>
+      </ul>
+    </div>
+    <div class="searchContainer">
+      <input ng-show="main.flowName && main.nodeName" ng-focus="main.searchingOptions = true" ng-blur="main.stopOptionSearch()" type="text" ng-model="main.nodeOption" placeholder="Option">
+      <ul ng-show="main.searchingOptions" class="autofillMenu">
+        <li ng-if="main.nodeOption ? option.label.toLowerCase().indexOf(main.nodeOption.toLowerCase()) != -1 : true" ng-repeat="option in main.nodeLabels" ng-click="main.selectOption(option)">{{option.label}}</li>
+      </ul>
+    </div>
+    <div class="searchContainer">
+      <input ng-show="main.flowName && main.nodeName && main.nodeOption" ng-focus="main.searchingValues = true" ng-blur="main.stopValueSearch()" type="text" ng-model="main.optionValue" placeholder="Value">
+      <ul ng-show="main.searchingValues" class="autofillMenu">
+        <li ng-if="main.optionValue ? option.label.toLowerCase().indexOf(main.optionValue.toLowerCase()) != -1 : true" ng-repeat="value in main.optionValues" ng-click="main.selectValue(value)">{{value.value}}</li>
+      </ul>
+    </div>
+    <div class="searchContainer">
+      <input ng-show="main.flowName && main.nodeName && main.nodeOption && main.subOptionsPresent" ng-focus="main.searchingSubOptions = true" ng-blur="main.stopSubOptionSearch()" type="text" ng-model="main.nodeSubOption" placeholder="Sub Option">
+      <ul ng-show="main.searchingSubOptions" class="autofillMenu">
+        <li ng-if="main.nodeSubOption ? subOption.label.toLowerCase().indexOf(main.nodeSubOption.toLowerCase()) != -1 : true" ng-repeat="subOption in main.nodeSubLabels" ng-click="main.selectSubOption(subOption)">{{subOption.label}}</li>
+      </ul>
+    </div>
+    <div class="searchContainer">
+      <input ng-show="main.flowName && main.nodeName && main.nodeOption && main.subOptionsPresent && main.nodeSubOption" ng-focus="main.searchingSubValues = true" ng-blur="main.stopSubValueSearch()" type="text" ng-model="main.subValue" placeholder="Value">
+      <ul ng-show="main.searchingSubValues" class="autofillMenu">
+        <li ng-if="main.subValue ? subValue.label.toLowerCase().indexOf(main.subValue.toLowerCase()) != -1 : true" ng-repeat="subValue in main.subValues" ng-click="main.selectSubValue(subValue)">{{subValue.value}}</li>
+      </ul>
+    </div>
+    <div class="searchContainer">
+      <button ng-show="!main.subOptionsPresent ? main.flowName && main.nodeName && main.nodeOption && main.optionValue : main.subValue" class="addStepBtn" ng-click="main.addStep()">Add Step</button>
+    </div>
+  </div>
   <ol class="testSteps">
-    <li ng-repeat="step in main.testSteps">{{step}}</li>
+    <li ng-repeat="step in main.testSteps">{{step.option + " - " + step.value}}
+      <ul ng-if="step.subOption">
+        <li>{{step.subOption + " - " + step.subValue}}</li>
+      </ul>
+    </li>
   </ol>
 </main>
 

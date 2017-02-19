@@ -377,4 +377,22 @@ angular.module('nightwatchUI').service('ParameterService', function(localStorage
             }
         }
     };
+
+    function getFlows() {
+      return Object.keys(info);
+    }
+
+    function getNodes(flow) {
+      return Object.keys(info[flow]);
+    }
+
+    function getLabels(flow, node) {
+      return info[flow][node].labels;
+    }
+
+    return {
+      getFlows: getFlows,
+      getNodes: getNodes,
+      getLabels: getLabels
+    }
 });
